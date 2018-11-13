@@ -1,0 +1,35 @@
+
+select * from Customers
+
+select distinct Country from Customers
+
+select * from Customers where CustomerID like 'Bl%'
+
+select top 100 * from Orders
+
+select * from Customers where PostalCode in ('1010' ,'3012' ,'12209' ,'05023')
+
+select * from Orders where ShipRegion is not null
+
+select * from Customers order by Country,City
+
+/*insert into Customers (CustomerID,CompanyName,ContactName,ContactTitle,[Address],City,Region,PostalCode,Country,Phone) Values ('ZZZZZ', 'ZaZxz', null,null,'1234 street blvd.','Detriot', 'MI', '48127', 'USA','(734) 123-1234')*/
+
+update  Orders set ShipRegion = 'EuroZone' where ShipCountry = 'France'
+
+delete from [Order Details] where Quantity = 1
+
+select AVG(Quantity) as 'Average', MIN(Quantity) as 'Minimum', MAX(Quantity) as 'Maximum' from [Order Details]
+
+select OrderID , AVG(Quantity) as 'Average', MIN(Quantity) as 'Minimum', MAX(Quantity) as 'Maximum' from [Order Details] group by OrderID
+
+select CustomerID from Orders where OrderID = (select distinct OrderID from [Order Details] where OrderID= '10290')
+
+select * from Orders join Customers on Orders.CustomerID = Customers.CustomerID
+select * from Orders left join Customers on Orders.CustomerID = Customers.CustomerID
+select * from Orders right join Customers on Orders.CustomerID = Customers.CustomerID
+
+select FirstName from Employees where ReportsTo is null
+
+select FirstName from Employees where ReportsTo = ( select EmployeeID from Employees where FirstName = 'Andrew')
+
